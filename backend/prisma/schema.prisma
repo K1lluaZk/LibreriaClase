@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Mapea 1:1 la tabla "libros" ya existente (creada originalmente con node:sqlite)
+// para no perder los datos que ya tenían cargados.
+//
+// NOTA DE MIGRACIÓN (HU-003): "disponible" (boolean) se reemplaza por
+// "cantidadDisponible" (número de ejemplares). Se deja "disponible" comentado
+// abajo a propósito -- ver instrucciones de migración antes de borrarlo.
+model Libro {
+  id                 Int      @id @default(autoincrement())
+  titulo             String
+  autor              String
+  isbn               String?
+  anio               Int?
+  categoria          String   @default("General")
+  cantidadDisponible Int      @default(1)
+
+  @@map("libros")
+}
+
+// Modelo único para staff (con login) y socios/lectores (sin login).
+// rol = null  -> socio/lector, registrado vía HU-002, sin acceso al sistema.
+// rol = valor -> staff, registrado por un administrador, puede loguearse (HU-001).
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  matricula String   @unique
+  correo    String   @unique
+  telefono  String
+  password  String?
+  rol       Rol?
+  activo    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@map("usuarios")
+}
+
+enum Rol {
+  ADMINISTRADOR
+  BIBLIOTECARIO
+}
