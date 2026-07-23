@@ -3,6 +3,7 @@ const ApiError = require('../utils/ApiError');
 const validarPrestamo = require('../utils/validarPrestamo');
 const env = require('../config/env');
 
+// Se exponen datos básicos del socio/libro (nunca password del socio).
 const INCLUDE_RELACIONES = {
   socio: { select: { id: true, nombre: true, matricula: true } },
   libro: { select: { id: true, titulo: true, autor: true, isbn: true } },
