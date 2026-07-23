@@ -1,3 +1,215 @@
-.card {
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.pantalla-login {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  height: 100%;
+  background: var(--biblio-papel);
+}
+
+// ---------------------------------------------------------------------
+// Panel izquierdo: la "sala de lectura" — pared verde oscuro + ilustración
+// ---------------------------------------------------------------------
+.panel-ilustracion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 3rem;
+  background: linear-gradient(180deg, var(--biblio-verde-oscuro), var(--biblio-verde));
+  color: var(--biblio-papel);
+  text-align: center;
+}
+
+.ilustracion-libros {
+  width: min(320px, 70%);
+  height: auto;
+}
+
+.titulo-marca {
+  font-family: var(--fuente-display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.tagline {
+  font-family: var(--fuente-texto);
+  color: #cfd9d2;
+  max-width: 320px;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+// ---------------------------------------------------------------------
+// Panel derecho: la ficha de catálogo con el formulario
+// ---------------------------------------------------------------------
+.panel-formulario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.ficha-catalogo {
+  width: 100%;
+  max-width: 380px;
+  background: var(--biblio-papel);
+  border: 1px solid var(--biblio-papel-oscuro);
+  border-top: 4px solid var(--biblio-bronce);
+  box-shadow: 0 12px 32px rgba(22, 38, 31, 0.12);
+  padding: 2rem 2rem 1.75rem;
+  font-family: var(--fuente-texto);
+  color: var(--biblio-tinta);
+}
+
+.ficha-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--fuente-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--biblio-gris-salvia);
+  border-bottom: 1px dashed var(--biblio-papel-oscuro);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.ficha-titulo {
+  font-family: var(--fuente-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.ficha-subtitulo {
+  font-size: 0.85rem;
+  color: var(--biblio-gris-salvia);
+  margin: 0 0 1.5rem;
+}
+
+.campo {
+  margin-bottom: 1.1rem;
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--biblio-tinta);
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.55rem 0.7rem;
+    font-family: var(--fuente-texto);
+    font-size: 0.95rem;
+    border: 1px solid var(--biblio-papel-oscuro);
+    background: #fffdf8;
+    color: var(--biblio-tinta);
+    border-radius: 2px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--biblio-bronce);
+      box-shadow: 0 0 0 3px rgba(180, 136, 75, 0.18);
+    }
+
+    &.invalido {
+      border-color: var(--biblio-burdeos);
+    }
+  }
+}
+
+.mensaje-error {
+  color: var(--biblio-burdeos);
+  font-size: 0.78rem;
+  margin-top: 0.3rem;
+}
+
+.alerta {
+  background: rgba(122, 46, 46, 0.08);
+  border: 1px solid rgba(122, 46, 46, 0.25);
+  color: var(--biblio-burdeos);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.boton-ingresar {
+  width: 100%;
+  padding: 0.65rem;
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--biblio-papel);
+  background: var(--biblio-verde);
   border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--biblio-verde-suave);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(244, 238, 224, 0.4);
+  border-top-color: var(--biblio-papel);
+  border-radius: 50%;
+  animation: girar 0.6s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+// ---------------------------------------------------------------------
+// Responsive: en mobile, la ilustración pasa a ser una franja superior angosta
+// ---------------------------------------------------------------------
+@media (max-width: 768px) {
+  .pantalla-login {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .panel-ilustracion {
+    padding: 1.5rem;
+    flex-direction: row;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .ilustracion-libros {
+    width: 90px;
+    flex-shrink: 0;
+  }
+
+  .titulo-marca {
+    font-size: 1.3rem;
+  }
+
+  .tagline {
+    display: none;
+  }
 }

@@ -14,6 +14,7 @@ import { AuthService } from '../../core/services/auth.service';
 export class LoginComponent {
   readonly cargando = signal(false);
   readonly errorMensaje = signal<string | null>(null);
+  readonly hoy = new Date();
 
   readonly formulario = this.fb.group({
     correo: ['', [Validators.required, Validators.email]],

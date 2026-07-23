@@ -1,50 +1,88 @@
-<div class="d-flex align-items-center justify-content-center min-vh-100">
-  <div class="card shadow-sm" style="width: 100%; max-width: 380px;">
-    <div class="card-body p-4">
-      <h1 class="h4 mb-1 text-center">Sistema de Biblioteca</h1>
-      <p class="text-muted text-center mb-4">Iniciá sesión para continuar</p>
+<div class="pantalla-login">
+  <section class="panel-ilustracion">
+    <svg class="ilustracion-libros" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="brillo" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stop-color="#e7c78a" stop-opacity="0.35" />
+          <stop offset="100%" stop-color="#e7c78a" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="160" cy="90" r="130" fill="url(#brillo)" />
+
+      <!-- pila de libros recostados -->
+      <g transform="translate(60,150)">
+        <rect x="0" y="30" width="200" height="22" rx="3" fill="#7a2e2e" />
+        <rect x="10" y="8" width="180" height="22" rx="3" fill="#b4884b" />
+        <rect x="0" y="-14" width="196" height="22" rx="3" fill="#2f5445" />
+      </g>
+
+      <!-- libro apoyado, entreabierto -->
+      <g transform="translate(95,60) rotate(-6)">
+        <rect x="0" y="0" width="70" height="96" rx="2" fill="#e7dcc4" stroke="#22241f" stroke-width="1.5" />
+        <line x1="8" y1="14" x2="62" y2="14" stroke="#7c8b81" stroke-width="1.2" />
+        <line x1="8" y1="26" x2="62" y2="26" stroke="#7c8b81" stroke-width="1.2" />
+        <line x1="8" y1="38" x2="62" y2="38" stroke="#7c8b81" stroke-width="1.2" />
+        <line x1="8" y1="50" x2="46" y2="50" stroke="#7c8b81" stroke-width="1.2" />
+      </g>
+
+      <!-- libro vertical, lomo bronce -->
+      <g transform="translate(180,40)">
+        <rect x="0" y="0" width="26" height="118" rx="2" fill="#b4884b" stroke="#22241f" stroke-width="1.5" />
+        <line x1="6" y1="10" x2="6" y2="108" stroke="#f4eee0" stroke-width="1.5" opacity="0.5" />
+      </g>
+    </svg>
+
+    <h1 class="titulo-marca">Biblioteca Central</h1>
+    <p class="tagline">Sistema de gestión de catálogo, socios y préstamos</p>
+  </section>
+
+  <section class="panel-formulario">
+    <div class="ficha-catalogo">
+      <div class="ficha-encabezado">
+        <span class="ficha-codigo">N.º 025.4 · ACCESO</span>
+        <span class="ficha-sello">Vigente: {{ hoy | date: 'dd/MM/yyyy' }}</span>
+      </div>
+
+      <h2 class="ficha-titulo">Iniciar sesión</h2>
+      <p class="ficha-subtitulo">Ingresá con tu correo y contraseña de personal</p>
 
       <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
-        <div class="mb-3">
-          <label for="correo" class="form-label">Correo</label>
+        <div class="campo">
+          <label for="correo">Correo</label>
           <input
             id="correo"
             type="email"
-            class="form-control"
             formControlName="correo"
-            [class.is-invalid]="f['correo'].invalid && f['correo'].touched"
+            [class.invalido]="f['correo'].invalid && f['correo'].touched"
           />
-          <div class="invalid-feedback" *ngIf="f['correo'].touched && f['correo'].errors?.['required']">
+          <div class="mensaje-error" *ngIf="f['correo'].touched && f['correo'].errors?.['required']">
             El correo es obligatorio
           </div>
-          <div class="invalid-feedback" *ngIf="f['correo'].touched && f['correo'].errors?.['email']">
+          <div class="mensaje-error" *ngIf="f['correo'].touched && f['correo'].errors?.['email']">
             El correo no tiene un formato válido
           </div>
         </div>
 
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
+        <div class="campo">
+          <label for="password">Contraseña</label>
           <input
             id="password"
             type="password"
-            class="form-control"
             formControlName="password"
-            [class.is-invalid]="f['password'].invalid && f['password'].touched"
+            [class.invalido]="f['password'].invalid && f['password'].touched"
           />
-          <div class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors?.['required']">
+          <div class="mensaje-error" *ngIf="f['password'].touched && f['password'].errors?.['required']">
             La contraseña es obligatoria
           </div>
         </div>
 
-        <div class="alert alert-danger py-2" *ngIf="errorMensaje()">
-          {{ errorMensaje() }}
-        </div>
+        <div class="alerta" *ngIf="errorMensaje()">{{ errorMensaje() }}</div>
 
-        <button type="submit" class="btn btn-primary w-100" [disabled]="cargando()">
-          <span *ngIf="cargando()" class="spinner-border spinner-border-sm me-2"></span>
+        <button type="submit" class="boton-ingresar" [disabled]="cargando()">
+          <span *ngIf="cargando()" class="spinner"></span>
           Ingresar
         </button>
       </form>
     </div>
-  </div>
+  </section>
 </div>

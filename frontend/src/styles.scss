@@ -6,3 +6,23 @@ body {
   margin: 0;
   background-color: #f4f6f8;
 }
+
+// ---------------------------------------------------------------------
+// Paleta "sala de lectura": verde bosque, papel envejecido, bronce.
+// Se define acá para poder reutilizarla en el resto de la app (dashboard, etc.)
+// ---------------------------------------------------------------------
+:root {
+  --biblio-verde-oscuro: #16261f;
+  --biblio-verde: #1e3d32;
+  --biblio-verde-suave: #2f5445;
+  --biblio-papel: #f4eee0;
+  --biblio-papel-oscuro: #e7dcc4;
+  --biblio-tinta: #22241f;
+  --biblio-bronce: #b4884b;
+  --biblio-burdeos: #7a2e2e;
+  --biblio-gris-salvia: #7c8b81;
+
+  --fuente-display: 'Spectral', Georgia, serif;
+  --fuente-texto: 'Inter', system-ui, sans-serif;
+  --fuente-mono: 'IBM Plex Mono', monospace;
+}

@@ -1,0 +1,49 @@
+<h1 class="h4 mb-3">{{ esEdicion() ? 'Editar libro' : 'Nuevo libro' }}</h1>
+
+<div class="text-center text-muted py-4" *ngIf="cargando()">Cargando...</div>
+
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" *ngIf="!cargando()" class="row g-3" style="max-width: 640px;">
+  <div class="col-md-6">
+    <label class="form-label">Título</label>
+    <input type="text" class="form-control" formControlName="titulo" [class.is-invalid]="f['titulo'].invalid && f['titulo'].touched" />
+    <div class="invalid-feedback">El título es obligatorio</div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Autor</label>
+    <input type="text" class="form-control" formControlName="autor" [class.is-invalid]="f['autor'].invalid && f['autor'].touched" />
+    <div class="invalid-feedback">El autor es obligatorio</div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Categoría</label>
+    <input type="text" class="form-control" formControlName="categoria" [class.is-invalid]="f['categoria'].invalid && f['categoria'].touched" />
+    <div class="invalid-feedback">La categoría es obligatoria</div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Cantidad disponible</label>
+    <input type="number" min="0" class="form-control" formControlName="cantidadDisponible" [class.is-invalid]="f['cantidadDisponible'].invalid && f['cantidadDisponible'].touched" />
+    <div class="invalid-feedback">Debe ser un número mayor o igual a 0</div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">ISBN <span class="text-muted">(opcional)</span></label>
+    <input type="text" class="form-control" formControlName="isbn" />
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Año <span class="text-muted">(opcional)</span></label>
+    <input type="number" class="form-control" formControlName="anio" />
+  </div>
+
+  <div class="col-12">
+    <div class="alert alert-danger py-2" *ngIf="errorMensaje()">{{ errorMensaje() }}</div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="guardando()">
+      <span *ngIf="guardando()" class="spinner-border spinner-border-sm me-2"></span>
+      Guardar
+    </button>
+    <a routerLink="/libros" class="btn btn-outline-secondary ms-2">Cancelar</a>
+  </div>
+</form>
