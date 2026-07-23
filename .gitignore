@@ -86,7 +86,6 @@ dist
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
 # vuepress build output
@@ -95,13 +94,13 @@ dist
 # vuepress v2.x temp directory
 .temp
 
-# Sveltekit cache directory
+# SvelteKit cache directory
 .svelte-kit/
 
-# vitepress build output
+# VitePress build output
 **/.vitepress/dist
 
-# vitepress cache directory
+# VitePress cache directory
 **/.vitepress/cache
 
 # Docusaurus cache and generated files
@@ -128,7 +127,7 @@ dist
 # pnpm
 .pnpm-store
 
-# yarn v3
+# Yarn v3
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -141,3 +140,38 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# ==================================================
+# Angular
+# ==================================================
+
+# Angular CLI cache
+.angular/
+
+# Angular TypeScript output
+out-tsc/
+
+# Angular testing files
+connect.lock
+testem.log
+libpeerconnection.log
+
+# Sass cache
+.sass-cache/
+
+# Legacy TypeScript typings
+typings/
+
+# ==================================================
+# IDEs
+# ==================================================
+
+# Visual Studio Code
+.vscode/*
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+
+# Visual Studio
+.vs/
